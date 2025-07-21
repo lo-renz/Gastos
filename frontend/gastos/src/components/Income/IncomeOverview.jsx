@@ -7,12 +7,8 @@ const IncomeOverview = ({ transactions, onAddIncome }) => {
   const [chartData, setChartData] = useState([]);
 
   useEffect(() => {
-    if (transactions && transactions.length > 0) {
-      const result = prepareIncomeBarChartData(transactions);
-      setChartData(result);
-    } else {
-      setChartData([]);
-    }
+    const result = prepareIncomeBarChartData(transactions);
+    setChartData(result);
   }, [transactions]);
 
   return (
@@ -20,7 +16,7 @@ const IncomeOverview = ({ transactions, onAddIncome }) => {
       <div className="flex items-center justify-between">
         <div className="">
           <h5 className="text-lg">Income Overview</h5>
-          <p className="text-xs text-gray-400 mt-0.5">
+          <p className="text-zs text-gray-400 mt-0.5">
             Track your earning over time and analyse your income trends.
           </p>
         </div>
@@ -32,13 +28,7 @@ const IncomeOverview = ({ transactions, onAddIncome }) => {
       </div>
 
       <div className="mt-10"></div>
-      {chartData.length > 0 ? (
-        <CustomBarChart data={chartData} />
-      ) : (
-        <div className="text-center text-gray-500 py-8">
-          No income data available
-        </div>
-      )}
+      <CustomBarChart data={chartData} />
     </div>
   );
 };
