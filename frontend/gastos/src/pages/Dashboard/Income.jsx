@@ -64,7 +64,7 @@ const Income = () => {
     }
 
     try {
-      axiosInstance.post(API_PATHS.INCOME.ADD_INCOME, {
+      await axiosInstance.post(API_PATHS.INCOME.ADD_INCOME, {
         source,
         amount,
         date,
@@ -99,7 +99,29 @@ const Income = () => {
   };
 
   // Handle download income details.
-  const handleDownloadincomeDetails = async () => {};
+  const handleDownloadincomeDetails = async () => {
+    try {
+      const response = await axiosInstance.get(
+        API_PATHS.INCOME.DOWNLOAD_INCOME,
+        {
+          responseType: "blob",
+        }
+      );
+
+      // Create a URL for the blob
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const link = document.createElement("a");
+      link.href = url;
+      link.setAttribute("download", "income_details.xlsx");
+      document.body.appendChild(link);
+      link.click();
+      link.parentNode.removeChild(link);
+      window.URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error("Error downloading income details:", error);
+      toast.error("Failed to download income details, please try again later.");
+    }
+  };
 
   useEffect(() => {
     fetchIncomeDetails();
