@@ -38,6 +38,14 @@
   @apply flex items-center gap-3 text-[12px] font-medium text-gray-700 hover:text-steel-blue bg-gray-50 hover:bg-blue-50 px-4 py-1.5 rounded-lg border border-gray-200/50 cursor-pointer;
 }
 
+.add-btn {
+  @apply flex items-center gap-3 text-[12px] font-medium text-steel-blue whitespace-nowrap bg-blue-50 border border-blue-100 rounded-lg px-4 py-2 cursor-pointer;
+}
+
+.add-btn-fill {
+  @apply text-white bg-steel-blue;
+}
+
 @layer utilities {
   .bg-primary {
     background-color: var(--color-primary);
